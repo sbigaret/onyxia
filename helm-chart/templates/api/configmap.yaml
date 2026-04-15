@@ -25,5 +25,10 @@ data:
   external.schema.directory: {{ printf "%s%s/" .Values.api.schemas.rootPath .Values.api.schemas.subPathDefault | quote }}
   role.schema.directory: {{ printf "%s%s/" .Values.api.schemas.rootPath .Values.api.schemas.subPathRole | quote }}
 {{- end}}
+{{- if .Values.web.env }}
+{{- range $key, $value := .Values.web.env }}
+  {{ $key }}: {{ $value | quote }}
+{{- end -}}
+{{- end }}
 {{- end }}
 {{- include "onyxia.api.configmap" . }}
